@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Test decimal number input</title>
+	<meta name="creator" content="Louis-Aimé de Fouquières, louis-aime@milesiancalendar.org">
+	<meta name="viewport" content="width=device-width">	
+	
+	<style type="text/css">
+		.centered {
+		text-align: center;
+		}
+	</style>
+	
+	<script>
+		function setInput(myNumber) {
+		myNumber = Number (myNumber); // force to a number
+		let myElement = document.getElementById('brut');
+		myElement.innerHTML = myNumber;
+		myElement = document.getElementById('formatted');
+		myElement.innerHTML = myNumber.toLocaleString('fr')
+		}
+	</script>
+
+</head>
+
+<body class="centered">
+<h1>Test for input element of type number with decimal entry</h1>
+<p>This page has attribute lang="fr" in its html declaration. 
+In French, the decimal separator is not a dot "." but a comma ",". 
+In certain circumstances, the mobile keybord protects the user from writing the decimal part of a number.</p>
+<h2>Initial number in field</h2>
+<p>The following number are written using locale "fr". Choose one to reinitiate input field.</p>
+<ul>
+	<li><button type="button" onclick="javascript:document.testForm.inputNumber.value=1025.65"><script>document.write(eval("1025.65").toLocaleString("fr"))</script></button></li>
+	<li><button type="button" onclick="javascript:document.testForm.inputNumber.value=0"><script>document.write(eval("0").toLocaleString("fr"))</script></button></li>
+</ul>
+<p>Try to change the next field to a decimal value, even when the initial value is 0.</p>
+<form name="testForm" autocomplete="off" method="post" action="javascript:setInput(document.testForm.inputNumber.value)">
+	<input type="number" step="any" name="inputNumber">
+</form>
+<ul>
+	<li>Value from javascript: <span id="brut"></span></li>
+	<li>Locale formatted value: <span id="formatted"></span></li>
+</ul>
+</body>
+<html>
